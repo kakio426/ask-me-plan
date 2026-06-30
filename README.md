@@ -43,18 +43,34 @@ ask-light / ask-standard / ask-deep
 
 ## Installation
 
-Copy the skill folders you want into your Codex skills directory:
+Install all skills with `npx` directly from GitHub:
 
 ```bash
-cp -R skills/ask-standard ~/.codex/skills/
-cp -R skills/ask-visual ~/.codex/skills/
-cp -R skills/ask-prompt ~/.codex/skills/
+npx github:kakio426/ask-me-plan
 ```
 
-Or copy all of them:
+Install selected skills:
 
 ```bash
-cp -R skills/ask-* ~/.codex/skills/
+npx github:kakio426/ask-me-plan install --skills ask-standard,ask-visual,ask-educator
+```
+
+Install into a custom Codex skills directory:
+
+```bash
+npx github:kakio426/ask-me-plan install --target ~/.codex/skills
+```
+
+List included skills:
+
+```bash
+npx github:kakio426/ask-me-plan list
+```
+
+After this package is published to npm, the shorter command will also work:
+
+```bash
+npx ask-me-plan
 ```
 
 Restart Codex after installing new skills if they do not appear immediately.

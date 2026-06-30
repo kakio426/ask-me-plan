@@ -1,0 +1,31 @@
+{
+  "name": "ask-me-plan",
+  "version": "0.1.0",
+  "description": "Ask before building. A Codex skill suite for turning vague ideas into precise plans and implementation prompts.",
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "ask-me-plan": "./bin/ask-me-plan.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "files": [
+    "bin",
+    "skills",
+    "examples",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kakio426/ask-me-plan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kakio426/ask-me-plan/issues"
+  },
+  "homepage": "https://github.com/kakio426/ask-me-plan#readme"
+}
