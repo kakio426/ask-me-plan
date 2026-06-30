@@ -13,6 +13,7 @@ Interview the user in their language, reduce ambiguity, and produce an implement
 ## Interview Shape
 
 Ask 8-12 questions across 2-4 short rounds. Do not dump every question at once unless the user asks for a form.
+After each answer, update the working plan before asking the next question. The skill should feel like a guided conversation, not a static questionnaire.
 
 Round 1: Define the job
 

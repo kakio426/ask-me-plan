@@ -16,9 +16,23 @@ Work like a product strategist: ask, summarize, challenge ambiguity, and turn th
 - Ask in rounds, not one huge questionnaire.
 - Ask 3-5 questions per round.
 - Summarize after each round and identify what is still unclear.
+- Treat the conversation itself as the planning artifact: each answer should become a decision, an assumption, an open question, or an implementation constraint.
 - Probe vague words such as "simple", "pretty", "smart", "easy", "AI-powered", "dashboard", or "personalized".
 - Keep confirmed decisions, assumptions, open questions, and non-goals separate.
 - Stop when the user says to proceed, stop asking, or that the plan is enough.
+
+## Conversation Loop
+
+Repeat this loop until the plan is clear enough to hand off:
+
+1. Ask 3-5 focused questions.
+2. Read the user's answers for decisions, preferences, constraints, and contradictions.
+3. Summarize what became clearer.
+4. Name what is still ambiguous.
+5. Ask the next round based on the user's answers, not a fixed checklist.
+6. When enough is known, convert the conversation into a prompt with `ask-prompt`.
+
+Do not skip the summary step. The summary is how the user catches misunderstandings before implementation.
 
 ## Interview Rounds
 

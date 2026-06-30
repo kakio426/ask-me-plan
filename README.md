@@ -61,7 +61,10 @@ Restart Codex after installing new skills if they do not appear immediately.
 
 ## Example
 
-See `examples/math-solution-analysis.md` for a first test case: a math solution-process analysis service for grade 5 fraction learning.
+See these examples for the first test case: a math solution-process analysis service for grade 5 fraction learning.
+
+- `examples/math-solution-analysis.md`: final brief and implementation prompt.
+- `examples/math-solution-analysis-interview.md`: conversation-first planning process.
 
 ## Roadmap
 
