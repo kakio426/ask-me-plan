@@ -6,6 +6,24 @@ const path = require("node:path");
 
 const packageRoot = path.resolve(__dirname, "..");
 const skillsRoot = path.join(packageRoot, "skills");
+const colorEnabled = Boolean(process.stdout.isTTY && !process.env.NO_COLOR);
+
+const colors = {
+  bold: "\x1b[1m",
+  cyan: "\x1b[36m",
+  dim: "\x1b[2m",
+  green: "\x1b[32m",
+  reset: "\x1b[0m",
+  yellow: "\x1b[33m"
+};
+
+function color(style, value) {
+  if (!colorEnabled) {
+    return value;
+  }
+
+  return `${colors[style]}${value}${colors.reset}`;
+}
 
 function printHelp() {
   console.log(`ask-me-plan
@@ -153,10 +171,32 @@ function installSkills(options) {
   }
 
   const action = options.dryRun ? "Would install" : "Installed";
-  console.log(`${action} ${selectedSkills.length} skills into ${target}:`);
+  printInstallSummary(action, selectedSkills, target);
+}
+
+function printInstallSummary(action, selectedSkills, target) {
+  const title = `${action} ${selectedSkills.length} skills`;
+  const rule = "-".repeat(Math.max(42, title.length + 6));
+
+  console.log("");
+  console.log(color("cyan", rule));
+  console.log(`${color("bold", "Ask Me Plan")} ${color("dim", "Codex skill suite")}`);
+  console.log(color("green", title));
+  console.log(color("cyan", rule));
+  console.log(`${color("bold", "Target")}  ${target}`);
+  console.log(`${color("bold", "Skills")}  ${selectedSkills.join(", ")}`);
+  console.log("");
+
   for (const skillName of selectedSkills) {
-    console.log(`- ${skillName}`);
+    console.log(`  ${color("green", "[ok]")} ${skillName}`);
   }
+
+  console.log("");
+  console.log(color("bold", "Next steps"));
+  console.log(`  1. Restart Codex if the skills do not appear immediately.`);
+  console.log(`  2. Try: ${color("yellow", "Use $ask-standard to help me plan this service before building.")}`);
+  console.log(`  3. For visual direction: ${color("yellow", "Use $ask-visual to compare A/B/C UI styles.")}`);
+  console.log("");
 }
 
 function listSkills() {
