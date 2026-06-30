@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Light"
+  short_description: "Quick interview before building"
+  default_prompt: "Use $ask-light to clarify this idea with a few questions before planning."

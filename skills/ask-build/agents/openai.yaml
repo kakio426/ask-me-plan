@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Build"
+  short_description: "Build from an approved Ask plan"
+  default_prompt: "Use $ask-build to start implementation from an approved Ask plan."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Prompt"
+  short_description: "Plan to implementation prompt"
+  default_prompt: "Use $ask-prompt to convert the planning interview into an implementation-ready prompt."

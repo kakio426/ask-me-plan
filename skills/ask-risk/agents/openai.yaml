@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Risk"
+  short_description: "Find planning risks early"
+  default_prompt: "Use $ask-risk to find assumptions, contradictions, and missing requirements before building."

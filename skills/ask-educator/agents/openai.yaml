@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Educator"
+  short_description: "Education product interview"
+  default_prompt: "Use $ask-educator to clarify an education product or learning content plan."

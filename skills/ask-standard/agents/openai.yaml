@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Standard"
+  short_description: "Balanced planning interview"
+  default_prompt: "Use $ask-standard to turn this idea into a practical plan through an interview."

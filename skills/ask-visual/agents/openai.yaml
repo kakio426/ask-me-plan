@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Visual"
+  short_description: "Visual direction interview"
+  default_prompt: "Use $ask-visual to compare visual directions before designing or building."

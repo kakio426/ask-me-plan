@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Deep"
+  short_description: "Detailed planning interview"
+  default_prompt: "Use $ask-deep to deeply clarify this project before implementation."
