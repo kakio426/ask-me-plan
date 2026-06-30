@@ -42,6 +42,39 @@ test("installs selected skills only", () => {
   assert.match(result.stdout, /\[ok\] ask-standard/);
 });
 
+test("deduplicates selected skills", () => {
+  const target = fs.mkdtempSync(path.join(os.tmpdir(), "ask-me-plan-dedup-"));
+
+  const result = runCli(["install", "--target", target, "--skills", "ask-standard,ask-standard,ask-visual"]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Installed 2 skills/);
+  assert.match(result.stdout, /Skills  ask-standard, ask-visual/);
+});
+
+test("marks dry runs separately from installed skills", () => {
+  const target = fs.mkdtempSync(path.join(os.tmpdir(), "ask-me-plan-dry-"));
+
+  const result = runCli(["install", "--target", target, "--dry-run", "--skills", "ask-standard"]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Would install 1 skill/);
+  assert.match(result.stdout, /\[dry\] ask-standard/);
+  assert.equal(fs.existsSync(path.join(target, "ask-standard")), false);
+});
+
+test("expands CODEX_HOME when it starts with a home shortcut", () => {
+  const result = runCli(["install", "--dry-run", "--skills", "ask-standard"], {
+    env: {
+      ...process.env,
+      CODEX_HOME: "~/.codex-test"
+    }
+  });
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, new RegExp(`${os.homedir().replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/.codex-test/skills`));
+});
+
 test("lists available skills", () => {
   const result = runCli(["list"]);
 

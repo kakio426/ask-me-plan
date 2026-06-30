@@ -61,7 +61,7 @@ function expandHome(inputPath) {
 }
 
 function defaultTarget() {
-  const codexHome = process.env.CODEX_HOME || path.join(os.homedir(), ".codex");
+  const codexHome = expandHome(process.env.CODEX_HOME || path.join(os.homedir(), ".codex"));
   return path.join(codexHome, "skills");
 }
 
@@ -142,7 +142,7 @@ function parseSkillList(value) {
 
 function resolveSkills(requestedSkills) {
   const availableSkills = listAvailableSkills();
-  const selectedSkills = requestedSkills.length > 0 ? requestedSkills : availableSkills;
+  const selectedSkills = requestedSkills.length > 0 ? [...new Set(requestedSkills)] : availableSkills;
 
   for (const skillName of selectedSkills) {
     if (!availableSkills.includes(skillName)) {
@@ -171,11 +171,12 @@ function installSkills(options) {
   }
 
   const action = options.dryRun ? "Would install" : "Installed";
-  printInstallSummary(action, selectedSkills, target);
+  printInstallSummary(action, selectedSkills, target, options.dryRun);
 }
 
-function printInstallSummary(action, selectedSkills, target) {
-  const title = `${action} ${selectedSkills.length} skills`;
+function printInstallSummary(action, selectedSkills, target, dryRun) {
+  const skillLabel = selectedSkills.length === 1 ? "skill" : "skills";
+  const title = `${action} ${selectedSkills.length} ${skillLabel}`;
   const rule = "-".repeat(Math.max(42, title.length + 6));
 
   console.log("");
@@ -188,7 +189,8 @@ function printInstallSummary(action, selectedSkills, target) {
   console.log("");
 
   for (const skillName of selectedSkills) {
-    console.log(`  ${color("green", "[ok]")} ${skillName}`);
+    const marker = dryRun ? color("yellow", "[dry]") : color("green", "[ok]");
+    console.log(`  ${marker} ${skillName}`);
   }
 
   console.log("");
