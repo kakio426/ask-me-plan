@@ -44,7 +44,7 @@ npx github:kakio426/ask-me-plan uninstall --skills ask-deep
 
 설치 후 Codex나 Claude Code에서 스킬이 바로 보이지 않으면 해당 도구를 재시작하세요.
 
-아직 npm registry에 배포한 것은 아니므로 현재는 `npx ask-me-plan`이 아니라 `npx github:kakio426/ask-me-plan`을 사용합니다.
+현재 공식 설치 방식은 GitHub 기반 npx입니다. npm registry 배포는 보류 중이므로 `npx ask-me-plan`이 아니라 `npx github:kakio426/ask-me-plan`을 사용합니다.
 
 ## 사용 예시
 
@@ -170,7 +170,7 @@ npx github:kakio426/ask-me-plan uninstall --skills ask-deep
 
 Restart Codex or Claude Code if the skills do not appear immediately.
 
-This package is not published to the npm registry yet, so use `npx github:kakio426/ask-me-plan` instead of `npx ask-me-plan`.
+The official install path is currently GitHub-based npx. npm registry publishing is deferred, so use `npx github:kakio426/ask-me-plan` instead of `npx ask-me-plan`.
 
 ### Skills
 
