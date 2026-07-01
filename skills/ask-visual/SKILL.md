@@ -57,3 +57,5 @@ Return a visual brief:
 - Color, type, layout, imagery, component, and motion guidance
 - Explicit avoid list
 - Implementation notes for the builder
+
+Fold the selected style and avoid list into the running plan's Confirmed Decisions and Non-Goals rather than keeping the visual brief as a separate document, so `ask-prompt` only has to read one plan.

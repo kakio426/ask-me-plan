@@ -45,7 +45,8 @@ If multi-agent tools are unavailable, perform the same roles sequentially in the
 4. Run relevant checks.
 5. Review changed files against the prompt.
 6. Drive the artifact through the user's expected path.
-7. Report what changed, what passed, and what could not be verified.
+7. If review or QA in steps 5-6 finds a mismatch, bug, or regression, fix it and repeat steps 4-6 before reporting. Do not report an unresolved failure as done.
+8. Report what changed, what passed, and what could not be verified.
 
 ## Guardrails
 
@@ -53,4 +54,5 @@ If multi-agent tools are unavailable, perform the same roles sequentially in the
 - Do not silently add major features.
 - Do not ignore open questions; either ask or mark an assumption before building.
 - Preserve user-provided visual, education, privacy, and QA decisions.
+- If a `PLAN.md` file exists in the project, treat it as the source of truth for scope and confirmed decisions.
 - If the plan conflicts with the codebase, explain the conflict and choose the smallest viable adjustment.

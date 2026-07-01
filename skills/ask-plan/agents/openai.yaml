@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Plan"
+  short_description: "Pick the right Ask Me Plan skill"
+  default_prompt: "Use $ask-plan to figure out which Ask Me Plan interview fits this request."

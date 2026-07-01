@@ -45,3 +45,5 @@ Return:
 - Blocking questions
 - Non-blocking assumptions
 - Recommended changes to the implementation prompt
+
+Move blocking questions into the running plan's Open Questions, non-blocking items into Assumptions, and apply the recommended changes directly to Confirmed Decisions before handing off to `ask-prompt`.

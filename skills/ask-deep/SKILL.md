@@ -21,6 +21,14 @@ Work like a product strategist: ask, summarize, challenge ambiguity, and turn th
 - Keep confirmed decisions, assumptions, open questions, and non-goals separate.
 - Stop when the user says to proceed, stop asking, or that the plan is enough.
 
+## Opt-Out
+
+If the user explicitly declines the interview even for a complex project, do not insist. State the assumptions you would otherwise have asked about, mark them clearly as assumptions rather than confirmed decisions, note in one sentence that skipping raises rework risk, and proceed.
+
+## Persisting State
+
+Long, multi-round interviews are vulnerable to lost context: chat history can be summarized, sessions can restart, and work can span multiple days. After each round, write or update a `PLAN.md` file in the project root with the current Confirmed Decisions, Assumptions, Open Questions, and Non-Goals. Mention the file path the first time you create it. Treat that file, not the chat history, as the source of truth for what was decided.
+
 ## Conversation Loop
 
 Repeat this loop until the plan is clear enough to hand off:
@@ -59,12 +67,12 @@ When the user gives a broad answer, convert it into specific choices:
 
 ## Output
 
-Return:
+Return, using the shared Ask Me Plan headers so state carries cleanly into the next skill:
 
-- Interview summary
-- Confirmed decisions
-- Open questions
+- Interview Summary
+- Confirmed Decisions (include scope)
 - Assumptions
-- Scope and non-goals
-- Implementation prompt
-- Optional next step: ask whether to start implementation with `ask-build`
+- Open Questions
+- Non-Goals
+- Implementation Prompt
+- Optional next step: name the best next Ask skill (`ask-visual`, `ask-educator`, `ask-risk`, `ask-prompt`, or `ask-build`)

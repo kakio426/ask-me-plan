@@ -8,7 +8,7 @@ description: Fast, low-friction planning interview for vague product, web page, 
 ## Overview
 
 Use this skill to turn a vague request into a small, implementation-ready brief with minimal friction.
-Ask in the user's language. 질문은 사용자의 언어를 따른다.
+Ask in the user's language.
 
 ## Interview Rules
 
@@ -17,6 +17,10 @@ Ask in the user's language. 질문은 사용자의 언어를 따른다.
 - Keep questions concrete, answerable, and tied to the next implementation step.
 - Separate confirmed facts from assumptions.
 - Stop asking when the user says to proceed, stop, build, or that the plan is enough.
+
+## Opt-Out
+
+If the user explicitly declines questions (for example: "no questions, just build", "skip the interview"), do not ask the question set. State your best-guess assumptions for goal, users, first-version scope, and constraints as a short list, mark them clearly as assumptions rather than confirmed decisions, and go straight to Output.
 
 ## Question Set
 
@@ -32,11 +36,12 @@ If the request is visual, route to `ask-visual` before finalizing. If the reques
 
 ## Output
 
-Return:
+Use these section names so later Ask skills (and the user) can pick up the state without re-deriving it:
 
-- Confirmed plan
+- Confirmed Decisions
 - Assumptions
-- Out of scope
-- Implementation prompt
+- Open Questions (omit if none remain)
+- Non-Goals
+- Implementation Prompt
 
 Keep the implementation prompt short enough for direct handoff to a coding agent.

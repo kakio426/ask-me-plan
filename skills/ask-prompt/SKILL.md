@@ -22,6 +22,8 @@ Accept:
 - Education brief
 - Risk review
 
+When the input already uses the shared Confirmed Decisions / Assumptions / Open Questions / Non-Goals headers, treat unresolved Open Questions as the first place to check for blocking gaps.
+
 Ask follow-up questions only for blocking gaps. Otherwise make explicit assumptions and continue.
 
 ## Prompt Structure

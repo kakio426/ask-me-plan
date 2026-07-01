@@ -51,3 +51,5 @@ Return an education brief:
 - Teacher/parent reporting needs
 - Privacy boundaries
 - Implementation prompt additions
+
+Fold this brief into the running plan's Confirmed Decisions and Non-Goals rather than keeping it as a separate document, so `ask-prompt` only has to read one plan.

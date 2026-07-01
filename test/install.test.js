@@ -24,7 +24,8 @@ test("installs all skills into a custom target", () => {
   assert.equal(result.status, 0, result.stderr);
   assert.ok(fs.existsSync(path.join(target, "ask-standard", "SKILL.md")));
   assert.ok(fs.existsSync(path.join(target, "ask-visual", "SKILL.md")));
-  assert.match(result.stdout, /Installed 8 skills/);
+  assert.ok(fs.existsSync(path.join(target, "ask-plan", "SKILL.md")));
+  assert.match(result.stdout, /Installed 9 skills/);
   assert.match(result.stdout, /Next steps/);
   assert.match(result.stdout, /Use \$ask-standard/);
 });
@@ -63,6 +64,18 @@ test("marks dry runs separately from installed skills", () => {
   assert.equal(fs.existsSync(path.join(target, "ask-standard")), false);
 });
 
+test("marks a fresh install as new and a repeat install as updated", () => {
+  const target = fs.mkdtempSync(path.join(os.tmpdir(), "ask-me-plan-markers-"));
+
+  const first = runCli(["install", "--target", target, "--skills", "ask-standard"]);
+  assert.equal(first.status, 0, first.stderr);
+  assert.match(first.stdout, /\[ok\] ask-standard \(new\)/);
+
+  const second = runCli(["install", "--target", target, "--skills", "ask-standard"]);
+  assert.equal(second.status, 0, second.stderr);
+  assert.match(second.stdout, /\[ok\] ask-standard \(updated\)/);
+});
+
 test("expands CODEX_HOME when it starts with a home shortcut", () => {
   const result = runCli(["install", "--dry-run", "--skills", "ask-standard"], {
     env: {
@@ -75,12 +88,81 @@ test("expands CODEX_HOME when it starts with a home shortcut", () => {
   assert.match(result.stdout, new RegExp(`${os.homedir().replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/.codex-test/skills`));
 });
 
+test("defaults to the Claude Code skills directory with --tool claude", () => {
+  const result = runCli(["install", "--dry-run", "--tool", "claude", "--skills", "ask-standard"]);
+
+  assert.equal(result.status, 0, result.stderr);
+  const expectedTarget = path.join(os.homedir(), ".claude", "skills");
+  assert.ok(result.stdout.includes(expectedTarget), result.stdout);
+  assert.match(result.stdout, /Claude Code skill suite/);
+});
+
+test("skips the Codex-only agents directory when installing for Claude Code", () => {
+  const target = fs.mkdtempSync(path.join(os.tmpdir(), "ask-me-plan-claude-"));
+
+  const result = runCli(["install", "--target", target, "--tool", "claude", "--skills", "ask-standard"]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.ok(fs.existsSync(path.join(target, "ask-standard", "SKILL.md")));
+  assert.equal(fs.existsSync(path.join(target, "ask-standard", "agents")), false);
+});
+
+test("rejects an unknown --tool value", () => {
+  const result = runCli(["install", "--dry-run", "--tool", "invalid"]);
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Unknown tool: invalid/);
+});
+
+test("uninstall removes an installed skill", () => {
+  const target = fs.mkdtempSync(path.join(os.tmpdir(), "ask-me-plan-uninstall-"));
+  runCli(["install", "--target", target, "--skills", "ask-standard"]);
+
+  const result = runCli(["uninstall", "--target", target, "--skills", "ask-standard"]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(fs.existsSync(path.join(target, "ask-standard")), false);
+  assert.match(result.stdout, /Removed 1 skill/);
+  assert.match(result.stdout, /\[ok\] ask-standard/);
+});
+
+test("uninstall --dry-run does not remove files", () => {
+  const target = fs.mkdtempSync(path.join(os.tmpdir(), "ask-me-plan-uninstall-dry-"));
+  runCli(["install", "--target", target, "--skills", "ask-standard"]);
+
+  const result = runCli(["uninstall", "--target", target, "--dry-run", "--skills", "ask-standard"]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.ok(fs.existsSync(path.join(target, "ask-standard", "SKILL.md")));
+  assert.match(result.stdout, /Would remove 1 skill/);
+});
+
+test("uninstall reports skills that were never installed", () => {
+  const target = fs.mkdtempSync(path.join(os.tmpdir(), "ask-me-plan-uninstall-missing-"));
+
+  const result = runCli(["uninstall", "--target", target, "--skills", "ask-standard"]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Not installed \(skipped\)/);
+  assert.match(result.stdout, /\[skip\] ask-standard/);
+});
+
+test("uninstall rejects unknown skills", () => {
+  const target = fs.mkdtempSync(path.join(os.tmpdir(), "ask-me-plan-uninstall-unknown-"));
+
+  const result = runCli(["uninstall", "--target", target, "--skills", "ask-missing"]);
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Unknown skill: ask-missing/);
+});
+
 test("lists available skills", () => {
   const result = runCli(["list"]);
 
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout, /ask-standard/);
   assert.match(result.stdout, /ask-educator/);
+  assert.match(result.stdout, /ask-plan/);
 });
 
 test("rejects unknown skills", () => {

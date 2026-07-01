@@ -1,7 +1,7 @@
 {
   "name": "ask-me-plan",
-  "version": "0.1.0",
-  "description": "Ask before building. A Codex skill suite for turning vague ideas into precise plans and implementation prompts.",
+  "version": "0.2.0",
+  "description": "Ask before building. A Codex and Claude Code skill suite for turning vague ideas into precise plans and implementation prompts.",
   "license": "MIT",
   "type": "commonjs",
   "bin": {
