@@ -8,17 +8,20 @@ description: Start implementation from an approved Ask planning prompt. Use afte
 ## Overview
 
 Use this skill to move from plan to implementation without losing the planning decisions.
-Always ask for final confirmation before starting: "Start implementation from this plan?"
+Ask for final confirmation before starting unless the user already confirmed — never ask twice in the same handoff.
 
 ## Gate
 
-Do not implement until the user confirms. If the user has already explicitly said to start implementation from the approved plan, treat that as confirmation.
+Do not implement until the user has confirmed once. Treat any of these as confirmation, and do not ask again:
+
+- The user already said to start, proceed, or build from the approved plan.
+- The plan arrived from `ask-prompt`, which already asked "Ready to build?", and the user already answered yes.
 
 Before building:
 
 - Restate the implementation target in one short paragraph.
 - List any blocking unknowns.
-- If no blocker exists, ask whether to start.
+- If no blocker exists and none of the above already happened, ask: "Start implementation from this plan?"
 
 ## Multi-Agent Mode
 
