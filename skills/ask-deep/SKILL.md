@@ -23,7 +23,10 @@ Work like a product strategist: ask, summarize, challenge ambiguity, and turn th
 
 ## Opt-Out
 
-If the user explicitly declines the interview even for a complex project, do not insist. State the assumptions you would otherwise have asked about, mark them clearly as assumptions rather than confirmed decisions, note in one sentence that skipping raises rework risk, and proceed.
+If the user explicitly declines the interview even for a complex project, do not insist on the full interview. First check whether the request is concrete enough to guess safely.
+
+- If the goal and primary user are already clear enough from context, state the assumptions you would otherwise have asked about, mark them clearly as assumptions rather than confirmed decisions, note in one sentence that skipping raises rework risk, and proceed.
+- If the goal or primary user is unclear enough that a wrong guess would produce a fundamentally different result, ask exactly one question to resolve that single biggest unknown — even a complex project deserves at least this much — then proceed without further questions.
 
 ## Persisting State
 

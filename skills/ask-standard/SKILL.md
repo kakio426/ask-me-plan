@@ -12,7 +12,10 @@ Interview the user in their language, reduce ambiguity, and produce an implement
 
 ## Opt-Out
 
-If the user explicitly declines the interview (for example: "no questions, just build", "skip planning"), do not run it. State the smallest reasonable assumption set for goal, users, scope, and platform, mark everything as an assumption rather than a confirmed decision, and produce the Output directly.
+If the user explicitly declines the interview (for example: "no questions, just build", "skip planning"), first check whether the request is concrete enough to guess safely.
+
+- If the goal, primary user, and platform are already clear enough from context, skip the interview: state the smallest reasonable assumption set for goal, users, scope, and platform, mark everything as an assumption rather than a confirmed decision, and produce the Output directly.
+- If even one of those is unclear enough that a wrong guess would produce a fundamentally different result, ask exactly one question to resolve that single biggest unknown, then proceed without further questions.
 
 ## Interview Shape
 

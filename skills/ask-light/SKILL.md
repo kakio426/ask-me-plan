@@ -20,7 +20,10 @@ Ask in the user's language.
 
 ## Opt-Out
 
-If the user explicitly declines questions (for example: "no questions, just build", "skip the interview"), do not ask the question set. State your best-guess assumptions for goal, users, first-version scope, and constraints as a short list, mark them clearly as assumptions rather than confirmed decisions, and go straight to Output.
+If the user explicitly declines questions (for example: "no questions, just build", "skip the interview"), first check whether the request is concrete enough to guess safely.
+
+- If the goal, primary user, and first-version scope are already clear enough from context, skip the question set: state your best-guess assumptions for goal, users, first-version scope, and constraints as a short list, mark them clearly as assumptions rather than confirmed decisions, and go straight to Output.
+- If even one of those is unclear enough that a wrong guess would produce a fundamentally different result, ask exactly one question to resolve that single biggest unknown, then proceed without further questions.
 
 ## Question Set
 

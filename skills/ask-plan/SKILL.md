@@ -35,7 +35,10 @@ If the user's first message already answers these implicitly (for example, a one
 
 ## Opt-Out
 
-If the user declines triage or planning entirely (for example: "no questions, just build", "skip planning"), do not run the triage questions. State the smallest reasonable assumption set for goal, users, and scope, mark it clearly as assumptions, and route straight to `ask-build` (or implement directly if no build skill is available).
+If the user declines triage or planning entirely (for example: "no questions, just build", "skip planning"), first check whether the request is concrete enough to route and guess safely.
+
+- If the goal and scale of the request are already clear enough from context, state the smallest reasonable assumption set for goal, users, and scope, mark it clearly as assumptions, and route straight to `ask-build` (or implement directly if no build skill is available).
+- If the goal or scale is unclear enough that a wrong guess would produce a fundamentally different result, ask exactly one question to resolve that single biggest unknown, then proceed without further questions.
 
 ## Output
 
