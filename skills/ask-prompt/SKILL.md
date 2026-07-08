@@ -26,6 +26,16 @@ When the input already uses the shared Confirmed Decisions / Assumptions / Open 
 
 Ask follow-up questions only for blocking gaps. Otherwise make explicit assumptions and continue.
 
+## Reconciling a Risk Review
+
+When the input includes a risk review's change log (`Before -> After (addresses: <risk>)`), treat every entry as required in the final prompt, not optional context. Compare the change log against the draft prompt line by line before finalizing:
+
+- If a change is already reflected in the prompt, leave it as is.
+- If a change is missing from the prompt, add it.
+- If a change conflicts with something the user confirmed after the risk review, keep the user's later decision and note the conflict under Open Questions and Assumptions instead of silently picking one.
+
+Do not drop a risk-driven change without recording why.
+
 ## Prompt Structure
 
 Produce a prompt with these sections:

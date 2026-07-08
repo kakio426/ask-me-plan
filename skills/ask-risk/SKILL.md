@@ -45,5 +45,6 @@ Return:
 - Blocking questions
 - Non-blocking assumptions
 - Recommended changes to the implementation prompt
+- Change log: one line per changed decision, in the form `Before -> After (addresses: <risk>)`. Include only what actually changed, not the full plan.
 
-Move blocking questions into the running plan's Open Questions, non-blocking items into Assumptions, and apply the recommended changes directly to Confirmed Decisions before handing off to `ask-prompt`.
+Move blocking questions into the running plan's Open Questions, non-blocking items into Assumptions, and apply the recommended changes directly to Confirmed Decisions before handing off to `ask-prompt`. Pass the change log along with the updated plan — it is how `ask-prompt` checks that nothing found during risk review got lost on the way to the final prompt.
