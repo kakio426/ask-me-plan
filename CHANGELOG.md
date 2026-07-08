@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+- Stop `ask-build` from asking to confirm a second time when `ask-prompt` already asked "Ready to build?" and the user said yes.
+- Cap the opt-out path in `ask-plan`, `ask-light`, `ask-standard`, and `ask-deep` at exactly one clarifying question when the request is too vague to guess safely, instead of always skipping straight to assumptions.
+- Add a `Before -> After` change log to `ask-risk`, and have `ask-prompt` check the final prompt against it line by line, so a risk-review finding can no longer be silently dropped on the way to the final prompt.
+
 ## 0.2.0
 
 - Add `ask-plan`, an entry-point skill that triages a request into `ask-light`, `ask-standard`, or `ask-deep`, and pulls in `ask-visual`, `ask-educator`, or `ask-risk` when they apply.
