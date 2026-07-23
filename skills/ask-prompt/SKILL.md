@@ -56,16 +56,31 @@ Produce a prompt with these sections:
 - QA path
 - Open questions and assumptions
 
+## Two Output Modes
+
+There are two build paths, and the prompt should match the one the plan is headed for.
+
+**Light path (default, feeds `ask-build`)**: the structure above, as prose. Right for small or throwaway builds where a working MVP is the goal.
+
+**Committed path (feeds `ask-ship`)**: when the plan came through `ask-architecture`, or the user wants the result done right in one pass and cannot easily upgrade an MVP later, produce a thicker prompt so `ask-ship` has material to slice and verify against. Add, on top of the structure above:
+
+- **Architectural backbone**: the data model, module seams and their contracts, real-vs-stub split, and extension points from `ask-architecture`.
+- **Depth tags**: mark each major unit `core` (build to ship quality) or `scaffold` (stub acceptable, real seam required). Do not let everything default to one depth.
+- **Definition of done per core unit**: what "finished" means beyond "it exists" — which edge/empty/error states are handled, that copy is real not placeholder, that data is computed not hardcoded. This is what lets a reviewer catch thinness.
+- **Ordered implementation checklist**: number the functional requirements (R1, R2, ...) in dependency order, so `ask-ship` can build and reconcile item by item instead of lumping.
+
+Separate the two axes: narrow the feature set, but do not make each feature shallow. "Fewer things, each finished" is the committed goal — not "everything, each half-built."
+
 ## Quality Bar
 
 The final prompt must be:
 
 - Specific enough to implement without re-interviewing the user.
 - Honest about assumptions.
-- Scoped to the first useful version.
+- Scoped to a minimal feature set — but on the committed path, deep on each feature it keeps, not uniformly thin.
 - Written in the user's language unless they request another language.
-- Ready for `ask-build` after user confirmation.
+- Ready for `ask-build` (light) or `ask-ship` (committed) after user confirmation.
 
 ## Output
 
-Return only the handoff prompt plus a short "Ready to build?" confirmation question when implementation may start next.
+Return only the handoff prompt plus a short confirmation question when implementation may start next: "Ready to build?" for the light path, or "Ready to ship this in one pass?" for the committed path.

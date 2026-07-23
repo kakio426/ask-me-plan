@@ -25,7 +25,9 @@ test("installs all skills into a custom target", () => {
   assert.ok(fs.existsSync(path.join(target, "ask-standard", "SKILL.md")));
   assert.ok(fs.existsSync(path.join(target, "ask-visual", "SKILL.md")));
   assert.ok(fs.existsSync(path.join(target, "ask-plan", "SKILL.md")));
-  assert.match(result.stdout, /Installed 9 skills/);
+  assert.ok(fs.existsSync(path.join(target, "ask-architecture", "SKILL.md")));
+  assert.ok(fs.existsSync(path.join(target, "ask-ship", "SKILL.md")));
+  assert.match(result.stdout, /Installed 11 skills/);
   assert.match(result.stdout, /Next steps/);
   assert.match(result.stdout, /Use \$ask-standard/);
 });
@@ -163,6 +165,8 @@ test("lists available skills", () => {
   assert.match(result.stdout, /ask-standard/);
   assert.match(result.stdout, /ask-educator/);
   assert.match(result.stdout, /ask-plan/);
+  assert.match(result.stdout, /ask-architecture/);
+  assert.match(result.stdout, /ask-ship/);
 });
 
 test("rejects unknown skills", () => {

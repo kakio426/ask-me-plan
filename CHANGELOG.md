@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0
+
+- Add two build paths and let the user choose. The **light path** (`ask-prompt -> ask-build`) stays as before for quick MVP output. The new **committed path** (`ask-architecture -> ask-prompt -> ask-ship`) produces an above-MVP first result: a minimal feature set, but each core unit built to ship quality on a growth-shaped skeleton.
+- Add `ask-architecture`: the agent designs a growth-shaped skeleton (data model, module seams, real-vs-stub split, extension points) and confirms it in plain language, so a vibe coder does not have to spec it. Effort is spent in proportion to reversal cost — settle what is expensive to change later, leave the cheap stuff loose.
+- Add `ask-ship`: a committed, above-MVP build that slices the work along architectural seams, builds each unit to its definition-of-done under explicit anti-stub rules, verifies the seams connect, and reconciles against an item-by-item checklist. Deep units get their own builder subagent; the reviewer and QA stay single and whole to catch the seams between them.
+- Add depth tags (`core` / `scaffold`) so full effort goes to what matters and stubs stay where they belong, instead of building everything uniformly thin.
+- Extend `ask-prompt` with a committed output mode that emits the architectural backbone, depth tags, per-core-unit definition-of-done, and an ordered implementation checklist for `ask-ship` to build and verify against.
+- Add path selection to `ask-plan`: one triage question (quick MVP vs done-right-in-one-pass) and committed-path routing.
+
 ## 0.2.1
 
 - Stop `ask-build` from asking to confirm a second time when `ask-prompt` already asked "Ready to build?" and the user said yes.

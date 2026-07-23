@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Architecture"
+  short_description: "Design a growth-shaped skeleton"
+  default_prompt: "Use $ask-architecture to design a growth-shaped skeleton before a committed build."

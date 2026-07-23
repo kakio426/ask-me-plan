@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Ship"
+  short_description: "Committed above-MVP one-pass build"
+  default_prompt: "Use $ask-ship to build the approved plan to above-MVP quality in one committed pass."
