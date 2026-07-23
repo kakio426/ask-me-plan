@@ -125,7 +125,11 @@ ask-plan, 어떤 스킬로 시작할지 모를 때
 
 교육 도메인이 아닌, `ask-light` 한 라운드로 끝나는 빠른 경로 예시도 있습니다.
 
-- `examples/bakery-ordering-site.md`: 빵집 픽업 주문 페이지를 질문 5개, 한 라운드로 기획하는 과정
+- `examples/bakery-ordering-site.md`: 빵집 픽업 주문 페이지를 질문 5개, 한 라운드로 기획하는 과정 (가벼운 길)
+
+제대로 길을 끝까지 보여주는 예시도 있습니다.
+
+- `examples/habit-tracker-committed-path.md`: 습관 트래커를 `ask-architecture -> ask-prompt -> ask-ship`으로, 골격 설계부터 유닛별 완성 바·이음매·체크리스트 검증까지 (제대로 길)
 
 ## 로드맵
 
