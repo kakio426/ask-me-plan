@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+- Close a fallback gap in the Multi-Agent Mode of `ask-build` and `ask-ship`. Both previously handled only "multi-agent tools are unavailable", so an agent in a session where the tools exist but spawning is policy-restricted had no stated path and could stall asking for permission. Both skills now treat absent tools and restricted spawning as the same condition, state that seeing a spawn tool is not permission to use it, and fall back to the sequential roles directly. `ask-ship` additionally reports that the roles ran sequentially.
+
 ## 0.3.0
 
 - Add two build paths and let the user choose. The **light path** (`ask-prompt -> ask-build`) stays as before for quick MVP output. The new **committed path** (`ask-architecture -> ask-prompt -> ask-ship`) produces an above-MVP first result: a minimal feature set, but each core unit built to ship quality on a growth-shaped skeleton.

@@ -61,7 +61,9 @@ When multi-agent tools are available, use subagents to give each deep unit undiv
 - **Reviewer**: exactly one, never split. It sees the whole checklist and the whole result. Its job is precisely the seams between split builders and any thin `core` unit — the failures no single builder can see.
 - **QA**: exactly one, never split. It drives the whole artifact through the user's expected path and reports observable pass/fail behavior end to end.
 
-If multi-agent tools are unavailable, perform the same roles sequentially in the main agent, keeping the reviewer and QA passes whole rather than per-unit.
+Treat multi-agent mode as unavailable when the tools are absent **or** when the session restricts spawning them — for example, a harness policy that only allows subagents on explicit user request. Seeing a spawn tool in the tool list is not permission to use it.
+
+When multi-agent mode is unavailable for either reason, perform the same roles sequentially in the main agent, keeping the reviewer and QA passes whole rather than per-unit. Fall back directly rather than stalling to ask for permission to spawn, and say in the report that the roles ran sequentially.
 
 ## Guardrails
 

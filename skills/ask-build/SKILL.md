@@ -38,7 +38,9 @@ Keep the prompt to subagents bounded:
 - Do not include private reasoning.
 - Do not ask subagents to invent requirements beyond the plan.
 
-If multi-agent tools are unavailable, perform the same roles sequentially in the main agent.
+Treat multi-agent mode as unavailable when the tools are absent **or** when the session restricts spawning them — for example, a harness policy that only allows subagents on explicit user request. Seeing a spawn tool in the tool list is not permission to use it.
+
+When multi-agent mode is unavailable for either reason, perform the same roles sequentially in the main agent. Fall back directly rather than stalling to ask for permission to spawn.
 
 ## Build Workflow
 
